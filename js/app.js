@@ -5,6 +5,7 @@ $(function () {
     var $width = $('canvas').width();
     var $height = $('canvas').height();
     var cellWidth = 10;
+    var $direction = 'right';
 
 
     //    var gradient = ctx.createLinearGradient(0, 0, $width, 0);
@@ -38,17 +39,20 @@ $(function () {
 
         var posX = $snake[0].x;
         var posY = $snake[0].y;
-        posX++;
-        console.log(posX, posY);
+
+        if ($direction == 'right') posX++;
+        if ($direction == 'left') posX--;
+        if ($direction == 'up') posY--;
+        if ($direction == 'down') posY++;
 
         var tail = $snake.pop();
         tail.x = posX;
+        tail.y = posY;
         $snake.unshift(tail);
         console.log(tail);
 
         for (var i = 0; i < $snake.length; i++) {
             var cell = $snake[i];
-            console.log(cell);
 
             ctx.fillStyle = 'gray';
             ctx.fillRect(cell.x * cellWidth, cell.y * cellWidth, cellWidth, cellWidth);
@@ -56,6 +60,15 @@ $(function () {
             ctx.strokeRect(cell.x * cellWidth, cell.y * cellWidth, cellWidth, cellWidth);
         }
     }
+
+    $(document).keydown(function (event) {
+        var key = event.which;
+        if (key == '37' && $direction != 'right') $direction = 'left';
+        if (key == '38' && $direction != 'down') $direction = 'up';
+        if (key == '39' && $direction != 'left') $direction = 'right';
+        if (key == '40' && $direction != 'up') $direction = 'down';
+    })
+
     timer = setInterval(snakeLook, 600);
 
 });
