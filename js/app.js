@@ -33,6 +33,17 @@ $(function () {
     createSnake();
 
     function snakeLook() {
+
+        var posX = $snake[0].x;
+        var posY = $snake[0].y;
+        posX++;
+        console.log(posX, posY);
+
+        var tail = $snake.pop();
+        tail.x = posX;
+        $snake.unshift(tail);
+        console.log(tail);
+
         for (var i = 0; i < $snake.length; i++) {
             var cell = $snake[i];
             console.log(cell);
@@ -43,6 +54,6 @@ $(function () {
             ctx.strokeRect(cell.x * cellWidth, cell.y * cellWidth, cellWidth, cellWidth);
         }
     }
-    snakeLook();
+    timer = setInterval(snakeLook, 600);
 
 });
