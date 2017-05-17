@@ -6,7 +6,7 @@ $(function () {
     console.log($width);
     var $height = $('canvas').height();
     var cellWidth = 10;
-    var $direction = 'right';
+    var $direction;
 
 
     //    var gradient = ctx.createLinearGradient(0, 0, $width, 0);
@@ -18,6 +18,18 @@ $(function () {
 
 
     var $snake;
+
+    //Start game
+    function start() {
+
+        $direction = 'right';
+        createSnake();
+
+        if (typeof timer != "undefined") clearInterval(timer);
+        timer = setInterval(snakeLook, 60);
+    }
+    start();
+
 
     function createSnake() {
         var snakeLength = 5;
@@ -47,7 +59,8 @@ $(function () {
         if ($direction == 'down') posY++;
 
         //Game over and restart game
-        if (posX == -1 || posX == $width / cellWidth || posY == -1 || posY == $width / cellWidth) {
+        if (posX == -1 || posX == $width / cellWidth || posY == -1 || posY == $height / cellWidth) {
+            start();
             return;
         }
 
@@ -74,7 +87,4 @@ $(function () {
         if (key == '39' && $direction != 'left') $direction = 'right';
         if (key == '40' && $direction != 'up') $direction = 'down';
     })
-
-    timer = setInterval(snakeLook, 60);
-
 });
