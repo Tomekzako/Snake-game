@@ -3,6 +3,7 @@ $(function () {
     var $canvas = $('canvas')[0];
     var ctx = $canvas.getContext("2d");
     var $width = $('canvas').width();
+    console.log($width);
     var $height = $('canvas').height();
     var cellWidth = 10;
     var $direction = 'right';
@@ -45,6 +46,11 @@ $(function () {
         if ($direction == 'up') posY--;
         if ($direction == 'down') posY++;
 
+        //Game over and restart game
+        if (posX == -1 || posX == $width / cellWidth || posY == -1 || posY == $width / cellWidth) {
+            return;
+        }
+
         var tail = $snake.pop();
         tail.x = posX;
         tail.y = posY;
@@ -69,6 +75,6 @@ $(function () {
         if (key == '40' && $direction != 'up') $direction = 'down';
     })
 
-    timer = setInterval(snakeLook, 600);
+    timer = setInterval(snakeLook, 60);
 
 });
