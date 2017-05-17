@@ -6,16 +6,13 @@ $(function () {
     var $height = $('canvas').height();
     var cellWidth = 10;
 
-    ctx.fillStyle = "#FFF";
-    ctx.fillRect(0, 0, $width, $height);
 
-    var gradient = ctx.createLinearGradient(0, 0, $width, 0);
-    gradient.addColorStop("0", "magenta");
-    gradient.addColorStop("0.5", "blue");
-    gradient.addColorStop("1.0", "red");
-    ctx.strokeStyle = gradient;
-    ctx.lineWidth = 1;
-    ctx.strokeRect(0, 0, $width, $height);
+    //    var gradient = ctx.createLinearGradient(0, 0, $width, 0);
+    //    gradient.addColorStop("0", "magenta");
+    //    gradient.addColorStop("0.5", "blue");
+    //    gradient.addColorStop("1.0", "red");
+    //    ctx.strokeStyle = gradient;
+
 
 
     var $snake;
@@ -33,6 +30,11 @@ $(function () {
     createSnake();
 
     function snakeLook() {
+
+        ctx.fillStyle = "#FFF";
+        ctx.fillRect(0, 0, $width, $height);
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(0, 0, $width, $height);
 
         var posX = $snake[0].x;
         var posY = $snake[0].y;
