@@ -15,6 +15,7 @@ $(function () {
 
         $direction = 'right';
         createSnake();
+        createFood();
 
         if (typeof timer != "undefined") clearInterval(timer);
         timer = setInterval(snakeLook, 60);
@@ -36,12 +37,11 @@ $(function () {
     //create food
     function createFood() {
         $food = {
-            x: Math.random() * ($width - cellWidth) / cellWidth,
-            y: Math.random() * ($height - cellWidth) / cellWidth,
+            x: Math.round(Math.random() * ($width - cellWidth) / cellWidth),
+            y: Math.round(Math.random() * ($height - cellWidth) / cellWidth),
         };
         console.log($food);
     }
-    createFood();
 
     function snakeLook() {
 
