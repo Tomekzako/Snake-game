@@ -7,16 +7,7 @@ $(function () {
     var $height = $('canvas').height();
     var cellWidth = 10;
     var $direction;
-
-
-    //    var gradient = ctx.createLinearGradient(0, 0, $width, 0);
-    //    gradient.addColorStop("0", "magenta");
-    //    gradient.addColorStop("0.5", "blue");
-    //    gradient.addColorStop("1.0", "red");
-    //    ctx.strokeStyle = gradient;
-
-
-
+    var $food;
     var $snake;
 
     //Start game
@@ -41,7 +32,16 @@ $(function () {
             });
         }
     }
-    createSnake();
+
+    //create food
+    function createFood() {
+        $food = {
+            x: Math.random() * ($width - cellWidth) / cellWidth,
+            y: Math.random() * ($height - cellWidth) / cellWidth,
+        };
+        console.log($food);
+    }
+    createFood();
 
     function snakeLook() {
 
@@ -72,12 +72,20 @@ $(function () {
 
         for (var i = 0; i < $snake.length; i++) {
             var cell = $snake[i];
-
-            ctx.fillStyle = 'gray';
-            ctx.fillRect(cell.x * cellWidth, cell.y * cellWidth, cellWidth, cellWidth);
-            ctx.strokeStyle = 'white';
-            ctx.strokeRect(cell.x * cellWidth, cell.y * cellWidth, cellWidth, cellWidth);
+            //Create snake
+            createCell(cell.x, cell.y);
         }
+
+        //Create food
+        createCell($food.x, $food.y);
+    }
+
+    function createCell(x, y) {
+
+        ctx.fillStyle = 'gray';
+        ctx.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
+        ctx.strokeStyle = 'white';
+        ctx.strokeRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
     }
 
     $(document).keydown(function (event) {
