@@ -64,11 +64,20 @@ $(function () {
             return;
         }
 
-        var tail = $snake.pop();
-        tail.x = posX;
-        tail.y = posY;
+        if (posX == $food.x && posY == $food.y) {
+            var tail = {
+                x: posX,
+                y: posY
+            };
+            createFood();
+        } else {
+            var tail = $snake.pop();
+            tail.x = posX;
+            tail.y = posY;
+            console.log(tail);
+        }
+
         $snake.unshift(tail);
-        console.log(tail);
 
         for (var i = 0; i < $snake.length; i++) {
             var cell = $snake[i];
