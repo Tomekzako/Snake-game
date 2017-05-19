@@ -59,7 +59,7 @@ $(function () {
         if ($direction == 'down') posY++;
 
         //Game over and restart game
-        if (posX == -1 || posX == $width / cellWidth || posY == -1 || posY == $height / cellWidth) {
+        if (posX == -1 || posX == $width / cellWidth || posY == -1 || posY == $height / cellWidth || bodyCollision(posX, posY, $snake)) {
             start();
             return;
         }
@@ -95,6 +95,14 @@ $(function () {
         ctx.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
         ctx.strokeStyle = 'white';
         ctx.strokeRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
+    }
+
+    function bodyCollision(x, y, arr) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].x == x && arr[i].y == y)
+                return true;
+        }
+        return false;
     }
 
     $(document).keydown(function (event) {
