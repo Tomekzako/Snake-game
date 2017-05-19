@@ -9,10 +9,10 @@ $(function () {
     var $direction;
     var $food;
     var $snake;
-
+    var $score;
     //Start game
     function start() {
-
+        $score = 0;
         $direction = 'right';
         createSnake();
         createFood();
@@ -21,7 +21,6 @@ $(function () {
         timer = setInterval(snakeLook, 60);
     }
     start();
-
 
     function createSnake() {
         var snakeLength = 5;
@@ -69,6 +68,8 @@ $(function () {
                 x: posX,
                 y: posY
             };
+            $score++;
+            console.log($score);
             createFood();
         } else {
             var tail = $snake.pop();
@@ -76,7 +77,6 @@ $(function () {
             tail.y = posY;
             console.log(tail);
         }
-
         $snake.unshift(tail);
 
         for (var i = 0; i < $snake.length; i++) {
@@ -87,6 +87,7 @@ $(function () {
 
         //Create food
         createCell($food.x, $food.y);
+        $('#score').text("Score: " + $score);
     }
 
     function createCell(x, y) {
@@ -112,4 +113,5 @@ $(function () {
         if (key == '39' && $direction != 'left') $direction = 'right';
         if (key == '40' && $direction != 'up') $direction = 'down';
     })
+
 });
