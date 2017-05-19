@@ -6,11 +6,21 @@
 
 body {
     background: darkgreen;
+    font-family: 'Barrio', cursive;
 }
 
 .container {
     max-width: 1050px;
-    margin: 50px auto;
+    margin: 20px auto;
     width: 100%;
     text-align: center;
+    
+    h1 {
+        font-size: 8rem;
+    }
+    
+    p {
+        font-size: 3rem;
+        padding-top: 10px;
+    }
 }
