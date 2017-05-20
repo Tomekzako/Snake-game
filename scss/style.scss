@@ -5,8 +5,10 @@
 }
 
 body {
-    background: darkgreen;
+    background-image: url(../snake-minimalist-art-funny-green-background-hd-wallpaper.jpg);
+    background-size: 100% 100%;
     font-family: 'Barrio', cursive;
+    color: darkgreen;
 }
 
 .container {
@@ -14,11 +16,9 @@ body {
     margin: 20px auto;
     width: 100%;
     text-align: center;
-    
     h1 {
-        font-size: 8rem;
+        font-size: 7rem;
     }
-    
     p {
         font-size: 3rem;
         padding-top: 10px;

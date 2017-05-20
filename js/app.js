@@ -92,7 +92,7 @@ $(function () {
 
     function createCell(x, y) {
 
-        ctx.fillStyle = 'gray';
+        ctx.fillStyle = 'chartreuse';
         ctx.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
         ctx.strokeStyle = 'white';
         ctx.strokeRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
